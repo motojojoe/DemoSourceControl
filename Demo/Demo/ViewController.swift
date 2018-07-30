@@ -15,14 +15,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        versionLabel.text = "Version 3"
+        setVersion()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func setVersion() {
+        versionLabel.text = "V " + getBundleVersion()
     }
-
+    
+    private func getBundleVersion() -> String {
+        if let info = Bundle.main.infoDictionary {
+            return info["CFBundleShortVersionString"] as! String
+        }
+        return "0.1"
+    }
 
 }
 
